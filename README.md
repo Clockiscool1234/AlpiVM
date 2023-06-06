@@ -16,7 +16,7 @@ pkg install qemu-system-x86_64-headless qemu-utils wget
 
 ### Installing Alpine
 
-First off, we need to create a disk image and grab Alpine image
+### First off, we need to create a disk image and grab Alpine image
 
 ```
 qemu-img create -f qcow2 alpine.qcow2
@@ -40,6 +40,21 @@ Then, launch `boot.sh` with:
 bash boot.sh
 ```
 
-Now comes the difficult part, setting up the network
 
 Taken from [HERE](https://stackoverflow.com/questions/76242337/dns-server-issue-in-alpine-guest-when-using-qemu-system-aarch64-on-android-host/76242338#76242338?newreg=c49fee248c90403b90a0e6156a52f1f9)
+
+Boot into the installation ISO using qemu,<br>
+Login into shell with user "root" and no password,<br>
+Create a directory with the command  `mkdir -p /etc/udhcpc/`<br>
+Create a file `/etc/udhcpc/udhcpc.conf` with the line `RESOLV_CONF="no"` preventing udhcpd (Busybox' DHCP server) from overwriting `/etc/resolv.conf`,<br>
+Create `/etc/resolv.conf` with 
+```
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+```
+entries (this seems to be important as one nameserver definition does not solve the issue),<br>
+Conclude the installation via `setup-alpine` as usual.<br>
+
+Now press enter mutiple times to choose the default until it shows ssh and choose `none`<br>
+When it shows the disk selection, choose `vda` ( or `sda` if it only shows `sda` )<br>
+Then type `sys` on the disk type screen <br>
