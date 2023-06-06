@@ -6,6 +6,6 @@ Termux
 
 ### Required packages 
 ```
-pkg install qemu-system-x86_64 wget
+pkg install qemu-system-x86_64-headless wget
 ```
 (incase `wget` is not installed)
