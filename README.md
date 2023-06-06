@@ -58,3 +58,19 @@ Conclude the installation via `setup-alpine` as usual.<br>
 Now press enter mutiple times to choose the default until it shows ssh and choose `none`<br>
 When it shows the disk selection, choose `vda` ( or `sda` if it only shows `sda` )<br>
 Then type `sys` on the disk type screen <br>
+Press y and enter key
+
+After installation, run the command:
+```
+poweroff
+```
+
+### Booting from hard disk
+
+Edit the `boot.sh` and remove the cdrom line and run the command again:
+```
+bash boot.sh
+```
+Then login with the credentials you entered in the setup
+
+And your done!
