@@ -19,7 +19,7 @@ pkg install qemu-system-x86_64-headless qemu-utils wget
 ### First off, we need to create a disk image and grab Alpine image
 
 ```
-qemu-img create -f qcow2 alpine.qcow2
+qemu-img create -f qcow2 alpine.qcow2 4G
 wget https://dl-cdn.alpinelinux.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.2-x86_64.iso 
 ```
 
