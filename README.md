@@ -1,10 +1,6 @@
 # AlpiVM
 
-## Alpine x86_64 in Termux
-
-### Requirements:
-
-Termux
+## Termux Version
 
 ### Required packages 
 
@@ -27,7 +23,7 @@ Next, create `boot.sh` or any name and add the content
 
 ```
 qemu-system-x86_64 -smp 2 -m 2040 \
--drive file=alpine.qcow2,if=virtio 
+-drive file=alpine.qcow2,if=virtio \
 -netdev user,id=n1,hostfwd=tcp::6379-:6379,hostfwd=tcp::9000-:9000 \
 -device virtio-net,netdev=n1 \
 -cdrom alpine-virt-3.13.2-x86_64.iso -boot d \
@@ -52,7 +48,7 @@ Create `/etc/resolv.conf` with
 nameserver 8.8.8.8
 nameserver 8.8.4.4
 ```
-entries (this seems to be important as one nameserver definition does not solve the issue),<br>
+entries,<br>
 Conclude the installation via `setup-alpine` as usual.<br>
 
 Now press enter mutiple times to choose the default until it shows ssh and choose `none`<br>
@@ -74,3 +70,23 @@ bash boot.sh
 Then login with the credentials you entered in the setup
 
 And your done!
+
+## Linux Version
+Instead of `pkg`, use `apt` (in Debian or Ubuntu) or `pacman -S` (in Arch Linux "if you even have one") or `zypper` (in openSUSE)<br>
+Same instructions as Termux Version
+
+## Windows Version
+Install QEmu [HERE](https://www.qemu.org/download/)<br>
+Download Alpine [HERE](https://dl-cdn.alpinelinux.org/alpine/v3.13/releases/x86_64/alpine-virt-3.13.2-x86_64.iso)<br>
+
+### Bootscript
+Instead of `boot.sh`, use `boot.bat` (or any name but with `.bat`)<br>
+Use the content here instead:<br>
+First setup: <br>
+```
+qemu-system-x86_64 -smp 2 -m 2040 -drive file=alpine.qcow2,if=virtio -netdev user,id=n1,hostfwd=tcp::6379-:6379,hostfwd=tcp::9000-:9000 -device virtio-net,netdev=n1 -cdrom alpine-virt-3.13.2-x86_64.iso -boot d -nographic
+```
+<br>
+Hard Disk boot: <br>
+Same as First Setup but without CDROM line
+Same instructions as in Termux Version
